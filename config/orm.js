@@ -30,7 +30,7 @@ function objToSql(ob) {
 };
 
 // object for SQL functions
-const orm = {
+let orm = {
     all: (tableInput, cb) => {
         const queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, (err, result) => {
@@ -41,7 +41,7 @@ const orm = {
         });
     },
     create: (table, cols, vals, cb) => {
-        const queryString = "INSERT INTO " + table;
+        let queryString = "INSERT INTO " + table;
 
         queryString += " (";
         queryString += cols.toString();
@@ -61,7 +61,7 @@ const orm = {
         });
     },
     update: (table, objColVals, condition, cb) => {
-        const queryString = "UPDATE " + table;
+        let queryString = "UPDATE " + table;
 
         queryString += " SET ";
         queryString += objToSql(objColVals);
